@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../jQuery/jquery.js"></script>
+  </head>
+  <style>
+    #box {
+      width: 100px;
+      height: 100px;
+      background-color: pink;
+      position: absolute;
+    }
+  </style>
+  <body>
+    <div id="box"></div>
+  </body>
+  <script>
+    async function fun1() {
+      return new Promise(function (resolve, reject) {
+        resolve($("#box").animate({ left: "300px" }, 3000));
+      });
+    }
+    async function fun2() {
+      return new Promise(function (resolve, reject) {
+        resolve($("#box").animate({ left: "0px" }, 3000));
+      });
+    }
+    async function fun3() {
+      return new Promise(function (resolve, reject) {
+        resolve($("#box").animate({ width: "0px" }, 2000));
+      });
+    }
+    async function fun4() {
+      return new Promise(function (resolve, reject) {
+        resolve($("#box").animate({ width: "500px" }, 2000));
+      });
+    }
+    async function start() {
+      await fun1();
+      await fun2();
+      await fun3();
+      await fun4();
+    }
+    start();
+  </script>
+</html>

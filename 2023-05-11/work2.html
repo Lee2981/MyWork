@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../jQuery/jquery.js"></script>
+  </head>
+  <style>
+    /* body {
+      width: 100%;
+      height: 100%;
+      cursor: url("../img/9210.png_860.png"), default;
+    } */
+    #box {
+      width: 500px;
+      height: 600px;
+      margin: 0 auto;
+      border: 1px solid #000;
+    }
+    .box-top {
+      margin-top: 20px;
+      width: 200px;
+      height: 60px;
+      border: 0px;
+      text-align: center;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-left: 150px;
+    }
+    .box-middle-top {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-around;
+    }
+    .box-middle-mid {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+    .box-middle-mid div {
+      margin: 20px 20px;
+      width: 90px;
+      height: 90px;
+      border: 1px solid #000;
+      border-radius: 50%;
+      text-align: center;
+    }
+    .box-middle-mid img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      -webkit-user-drag: none;
+    }
+  </style>
+  <body>
+    <div id="box">
+      <button class="box-top" onclick="start()">开始游戏</button>
+      <div class="box-middle">
+        <div class="box-middle-top">
+          <div class="box-middle-top-left">倒计时: <span>60</span>秒</div>
+          <div class="box-middle-top-right">得分: <span>0</span></div>
+        </div>
+        <div class="box-middle-mid">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    let num;
+    let num2;
+    let time = 60;
+    let grade = 0;
+    let speed = 1300;
+    let timer2;
+    function start() {
+      $(".box-top").css({ pointerEvents: "none" });
+      dishu(speed);
+      //游戏倒计时
+      let timer = setInterval(() => {
+        time--;
+        if (time == -1) {
+          clearInterval(timer);
+          time = 60;
+          alert("游戏结束,您的得分为:" + grade);
+          $(".box-top").css({ pointerEvents: "auto" });
+          clearInterval(timer2);
+          $(".box-middle-mid div").html("");
+        }
+        $(".box-middle-top-left span").html(time);
+      }, 1000);
+    }
+    //随机地鼠出现
+    function dishu(speed) {
+      timer2 = setInterval(() => {
+        num = Math.ceil(Math.random() * 9);
+        $(".box-middle-mid div")
+          .eq(num)
+          .html('<img class="jia" src="../img/20210509063057_cc1f9.webp"/>');
+        num2 = Math.ceil(Math.random() * 9);
+        $(".box-middle-mid div").not($(".box-middle-mid div")[num]).html("");
+        $(".box-middle-mid div")
+          .eq(num2)
+          .html('<img class="jian" src="../img/20210509063022_28a8a.jpg"/>');
+      }, speed);
+    }
+    //点击地鼠加分或减分
+    $(".box-middle-mid").on("click", "div", function () {
+      if ($(this).children().attr("class") == "jia") {
+        grade++;
+        $(this).html("");
+        $(".box-middle-top-right span").html(grade);
+        if (grade == 10) {
+          clearInterval(timer2);
+          dishu(1000);
+        } else if (grade == 20) {
+          dishu(800);
+          clearInterval(timer2);
+        }
+      } else if ($(this).children().attr("class") == "jian") {
+        grade--;
+        $(this).html("");
+        $(".box-middle-top-right span").html(grade);
+      }
+    });
+  </script>
+</html>
