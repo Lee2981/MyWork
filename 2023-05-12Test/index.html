@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script src="../jQuery/jquery.js"></script>
+    <script src="../Echarts/echarts.js"></script>
+  </head>
+  <body>
+    <div id="box">
+      <div class="box-top-1"><h2>待办事项</h2></div>
+      <div class="box-top-2"></div>
+      <div class="box-middle-1">
+        <div class="box-middle-1-left">
+          <h2>新增会员</h2>
+          <div class="box-middle-1-btn">
+            <button onclick="today(1)" class="color">今日</button>
+            <button onclick="yesterday(1)">昨日</button>
+            <button onclick="weekday(1)">7日</button>
+            <button onclick="mounth(1)">30日</button>
+          </div>
+          <div id="main"></div>
+        </div>
+        <div class="box-middle-1-right">
+          <h2>新增订单</h2>
+          <div class="box-middle-1-btn">
+            <button onclick="today(2)" class="color">今日</button>
+            <button onclick="yesterday(2)">昨日</button>
+            <button onclick="weekday(2)">7日</button>
+            <button onclick="mounth(2)">30日</button>
+          </div>
+          <div id="main2"></div>
+        </div>
+      </div>
+      <div class="box-bottom">
+        <div class="box-bottom-top">
+          <h2>运营数据</h2>
+          <div><input type="date" />~<input type="date" /></div>
+          <div class="box-bottom-top-btn">
+            <button onclick="today(3)" class="color">今日</button>
+            <button onclick="yesterday(3)">昨日</button>
+            <button onclick="weekday(3)">7日</button>
+            <button onclick="mounth(3)">30日</button>
+          </div>
+        </div>
+        <div class="box-bottom-box">
+          <div class="box-bottom-left"></div>
+          <div class="box-bottom-right">
+            <div id="main3"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    //待办事项数据
+    const topData = [
+      { title: "待发货订单", unit: "单位(笔)", concent: 4 },
+      { title: "待处理售后", unit: "单位(笔)", concent: 0 },
+      { title: "待付款订单", unit: "单位(笔)", concent: 113 },
+      { title: "待补货商品", unit: "单位(个)", concent: 0 },
+      { title: "待审核会员", unit: "单位(个)", concent: 0 },
+      { title: "待审核佣金", unit: "单位(元)", concent: 948.19 },
+    ];
+    const bottomData = [
+      { title: "成交金额(元)", concent: 796, content: "较昨日", num: 30.6 },
+      { title: "退款金额(元)", concent: 0, content: "较昨日", num: 100 },
+      { title: "支付订单数(笔)", concent: 4, content: "较昨日", num: 100 },
+      { title: "支付人数(人)", concent: 4, content: "转化率", num: 0.5 },
+      { title: "客单价(元)", concent: 199, content: "较昨日", num: 34.6 },
+      { title: "笔单价(元)", concent: 199, content: "较昨日", num: 34.6 },
+    ];
+    //今日,昨日数据
+    const dataToday = [
+      ["00:00", 10, 21],
+      ["01:00", 20, 15],
+      ["02:00", 120, 22],
+      ["03:00", 50, 11],
+      ["04:00", 60, 16],
+      ["05:00", 30, 11],
+      ["06:00", 130, 27],
+      ["07:00", 20, 21],
+      ["08:00", 10, 21],
+      ["09:00", 5, 21],
+      ["10:00", 9, 21],
+      ["11:00", 20, 21],
+      ["12:00", 190, 21],
+      ["13:00", 90, 21],
+      ["14:00", 20, 21],
+      ["15:00", 30, 21],
+      ["16:00", 50, 11],
+      ["17:00", 55, 51],
+      ["18:00", 53, 11],
+      ["19:00", 12, 31],
+      ["20:00", 45, 51],
+      ["21:00", 76, 11],
+      ["22:00", 87, 61],
+      ["23:00", 10, 41],
+    ];
+    //7日数据,30日数据
+    const dataWeek = [
+      ["2000-06-05", 116, 201],
+      ["2000-06-06", 129, 125],
+      ["2000-06-07", 135, 212],
+      ["2000-06-08", 86, 121],
+      ["2000-06-09", 73, 41],
+      ["2000-06-10", 85, 121],
+      ["2000-06-11", 73, 267],
+      ["2000-06-12", 68, 281],
+      ["2000-06-13", 92, 241],
+      ["2000-06-14", 130, 221],
+      ["2000-06-15", 245, 211],
+      ["2000-06-16", 139, 241],
+      ["2000-06-17", 115, 261],
+      ["2000-06-18", 111, 271],
+      ["2000-06-19", 309, 281],
+      ["2000-06-20", 206, 231],
+      ["2000-06-21", 137, 121],
+      ["2000-06-22", 128, 21],
+      ["2000-06-23", 85, 131],
+      ["2000-06-24", 94, 51],
+      ["2000-06-25", 71, 11],
+      ["2000-06-26", 106, 21],
+      ["2000-06-27", 84, 31],
+      ["2000-06-28", 93, 41],
+      ["2000-06-29", 85, 21],
+      ["2000-06-30", 73, 71],
+      ["2000-07-01", 83, 91],
+      ["2000-07-02", 125, 101],
+      ["2000-07-03", 107, 31],
+      ["2000-07-04", 82, 61],
+      ["2000-07-05", 44, 31],
+    ];
+    //页面打开执行
+    $(document).ready(function () {
+      showTopList();
+      showBottomList();
+      today(1);
+      today(2);
+      today(3);
+    });
+    $(".box-bottom-left").on("mouseover", "div", function () {
+      $(this).css({ background: "white" });
+    });
+    //鼠标以上改变样式
+    $(".box-bottom-left").on("mouseover", "div", function () {
+      $(this).css({ background: "white" });
+    });
+    //鼠标移出改变样式
+    $(".box-bottom-left").on("mouseleave", "div", function () {
+      $(this).css({ background: "#f8f9fe" });
+    });
+    //待办事项渲染
+    function showTopList() {
+      let html = "";
+      $(topData).each((index, item) => {
+        html += ` <div>
+          <h3>${item.title}</h3>
+          <p>${item.unit}</p>
+          <h1>${item.concent}</h1>
+        </div>`;
+      });
+      $(".box-top-2").html(html);
+    }
+    //运营数据渲染
+    function showBottomList() {
+      let html = "";
+      $(bottomData).each((index, item) => {
+        html += ` <div>
+          <p>${item.title}</p>
+          <h2>${item.concent}</h2>
+          <span>${item.content}</span>
+          <span>${item.num}%</span>
+        </div>`;
+      });
+      $(".box-bottom-left").html(html);
+    }
+    // Echarts
+    let weekData = [];
+    //新增会员echarts
+    var chartDom = document.getElementById("main");
+    var myChart = echarts.init(chartDom);
+    var option;
+    function Echarts(dateList, valueList) {
+      option = {
+        visualMap: [
+          {
+            show: false,
+            type: "continuous",
+            seriesIndex: 0,
+            min: 0,
+            max: 400,
+          },
+        ],
+        tooltip: {
+          trigger: "axis",
+        },
+        legend: {
+          data: ["新增会员"],
+          x: "right",
+          padding: [25, 100, 0, 0],
+        },
+        xAxis: [
+          {
+            data: dateList,
+          },
+        ],
+        yAxis: [
+          {
+            type: "value",
+            name: "单位(个)",
+            splitLine: {
+              lineStyle: {
+                type: "dashed", //网格线为虚线
+              },
+            },
+          },
+        ],
+        series: [
+          {
+            type: "line",
+            name: "新增会员",
+            showSymbol: false,
+            data: valueList,
+            areaStyle: {
+              ShadowColor: "rgba(148,95,185,185,0.5)",
+              ShadowBlur: 20,
+            },
+          },
+        ],
+      };
+      option && myChart.setOption(option);
+    }
+    $(".box-middle-1-left .box-middle-1-btn").on(
+      "click",
+      "button",
+      function () {
+        $(this).addClass("color");
+        $(".box-middle-1-left .box-middle-1-btn button")
+          .not(this)
+          .removeClass("color");
+      }
+    );
+    //新增订单echarts
+    var chartDom2 = document.getElementById("main2");
+    var myChart2 = echarts.init(chartDom2);
+    var option2;
+    function Echarts2(dateList, valueList) {
+      option2 = {
+        visualMap: [
+          {
+            show: false,
+            type: "continuous",
+            seriesIndex: 0,
+            min: 0,
+            max: 400,
+          },
+        ],
+        tooltip: {
+          trigger: "axis",
+        },
+        legend: {
+          data: ["新增订单"],
+          x: "right",
+          padding: [25, 100, 0, 0],
+        },
+        xAxis: [
+          {
+            data: dateList,
+          },
+        ],
+        yAxis: [
+          {
+            type: "value",
+            name: "单位(笔)",
+            splitLine: {
+              lineStyle: {
+                type: "dashed", //网格线为虚线
+              },
+            },
+          },
+        ],
+        series: [
+          {
+            type: "bar",
+            name: "新增订单",
+            showSymbol: false,
+            data: valueList,
+            itemStyle: {
+              //圆角
+              normal: {
+                barBorderRadius: [20, 20, 0, 0],
+              },
+            },
+          },
+        ],
+      };
+      option2 && myChart2.setOption(option2);
+    }
+    $(".box-middle-1-right .box-middle-1-btn").on(
+      "click",
+      "button",
+      function () {
+        $(this).addClass("color");
+        $(".box-middle-1-right .box-middle-1-btn button")
+          .not(this)
+          .removeClass("color");
+      }
+    );
+    //运营数据echarts
+    var chartDom3 = document.getElementById("main3");
+    var myChart3 = echarts.init(chartDom3);
+    var option3;
+    function Echarts3(dateList, valueList) {
+      option3 = {
+        visualMap: [
+          {
+            show: false,
+            type: "continuous",
+            seriesIndex: 0,
+            min: 0,
+            max: 400,
+          },
+        ],
+        tooltip: {
+          trigger: "axis",
+        },
+        legend: {
+          data: ["成交总额"],
+          x: "right",
+          padding: [25, 100, 0, 0],
+        },
+        xAxis: [
+          {
+            data: dateList,
+          },
+        ],
+        yAxis: [
+          {
+            type: "value",
+            name: "单位(元)",
+            splitLine: {
+              lineStyle: {
+                type: "dashed", //网格线为虚线
+              },
+            },
+          },
+        ],
+        series: [
+          {
+            type: "line",
+            name: "成交总额",
+            showSymbol: false,
+            data: valueList,
+            areaStyle: {
+              ShadowColor: "rgba(148,95,185,185,0.5)",
+              ShadowBlur: 20,
+            },
+          },
+        ],
+      };
+      option3 && myChart3.setOption(option3);
+    }
+    $(".box-bottom-top-btn").on("click", "button", function () {
+      $(this).addClass("color");
+      $(".box-bottom-top-btn button").not(this).removeClass("color");
+    });
+    //今日
+    function today(num) {
+      dateList = dataToday.map(function (item) {
+        return item[0];
+      });
+      valueList = dataToday.map(function (item) {
+        return item[1];
+      });
+      if (num == 1) {
+        Echarts(dateList, valueList);
+      } else if (num == 2) {
+        Echarts2(dateList, valueList);
+      } else {
+        Echarts3(dateList, valueList);
+      }
+    }
+    //昨日
+    function yesterday(num) {
+      //X轴
+      dateList = dataToday.map(function (item) {
+        return item[0];
+      });
+      //第一条折线
+      valueList = dataToday.map(function (item) {
+        return item[2];
+      });
+      if (num == 1) {
+        Echarts(dateList, valueList);
+      } else if (num == 2) {
+        Echarts2(dateList, valueList);
+      } else {
+        Echarts3(dateList, valueList);
+      }
+    }
+    //一周
+    function weekday(num) {
+      for (let i = 0; i < 7; i++) {
+        weekData.push(dataWeek[i]);
+      }
+      dateList = weekData.map(function (item) {
+        return item[0];
+      });
+      valueList = weekData.map(function (item) {
+        return item[1];
+      });
+      if (num == 1) {
+        Echarts(dateList, valueList);
+      } else if (num == 2) {
+        Echarts2(dateList, valueList);
+      } else {
+        Echarts3(dateList, valueList);
+      }
+    }
+    //一月
+    function mounth(num) {
+      dateList = dataWeek.map(function (item) {
+        return item[0];
+      });
+      valueList = dataWeek.map(function (item) {
+        return item[1];
+      });
+      if (num == 1) {
+        Echarts(dateList, valueList);
+      } else if (num == 2) {
+        Echarts2(dateList, valueList);
+      } else {
+        Echarts3(dateList, valueList);
+      }
+    }
+  </script>
+</html>
