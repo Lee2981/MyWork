@@ -1,0 +1,193 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+body,
+html {
+  width: 100%;
+  height: 100%;
+}
+/* 最大盒子 */
+#box {
+  width: 80%;
+  height: 100%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(
+      127deg,
+      rgba(255, 0, 0, 0.8),
+      rgba(255, 0, 0, 0) 70.71%
+    ),
+    linear-gradient(21deg, rgba(0, 255, 0, 0.8), rgba(0, 255, 0, 0) 70.71%),
+    linear-gradient(336deg, rgba(0, 0, 255, 0.8), rgba(0, 0, 255, 0) 70.71%);
+}
+/* 所有的svg图标 */
+svg {
+  cursor: pointer;
+}
+/* 左边盒子 */
+.box-left {
+  width: 65%;
+  height: 80%;
+  padding: 20px 0 0 80px;
+}
+/* 左边头部 */
+.box-left-top {
+  display: flex;
+  justify-content: start;
+}
+/* 左边头部中的svg */
+.box-left-top svg {
+  margin-right: 5px;
+  position: relative;
+  top: 5px;
+}
+/* 左边头部中的div */
+.box-left-top div {
+  width: 100px;
+  line-height: 40px;
+  padding: 0 10px;
+  border: 1px solid rgba(163, 157, 157, 0.3);
+  text-align: center;
+  font-size: 16px;
+  color: white;
+}
+/* 左边中间 */
+.box-left-middle {
+  margin-top: 20px;
+}
+/* 左边中间中的table */
+.box-left-middle table {
+  border-collapse: collapse;
+  width: 100%;
+}
+/* 左边中间table中tr */
+.box-left-middle table tr {
+  line-height: 50px;
+  color: rgb(204, 202, 202);
+}
+/* 右边盒子 */
+.box-right {
+  width: 35%;
+  height: 80%;
+  padding: 20px 0 0 0;
+  text-align: center;
+  color: white;
+}
+/* 图片 */
+.box-right img {
+  width: 40%;
+}
+/* 歌词 */
+.box-right-lyrc {
+  margin-top: 50px;
+  height: 300px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  font-size: 20px;
+  line-height: 50px;
+}
+.box-right-lyrc::-webkit-scrollbar {
+  display: none;
+}
+/* 底部盒子 */
+.box-bottom {
+  width: 80%;
+  position: fixed;
+  height: 100px;
+  bottom: 90px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+/* 底部盒子左边按钮 */
+.box-bottom-BF {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* 进度条 */
+.box-bottom-JDT {
+  width: 47%;
+  height: 100%;
+}
+/* 进度条上的音乐名字 */
+.box-bottom-JDT p {
+  position: absolute;
+  z-index: 99;
+  top: 20px;
+  padding-left: 25px;
+  color: #888484;
+}
+/* 底部盒子右边按钮 */
+.box-bottom-SC {
+  width: 33%;
+  height: 100%;
+}
+/* 底部按钮区下的盒子 */
+.box-bottom-BF div {
+  padding-left: 20px;
+}
+/* 暂停播放 */
+.box-bottom-BF-StopPlay {
+  display: none;
+}
+
+/* audio控件设置 */
+audio {
+  width: 100%;
+  padding-top: 20px;
+}
+/* 播放按钮 */
+audio::-webkit-media-controls-play-button {
+  display: none;
+}
+/* 观看的当前时间 */
+audio::-webkit-media-controls-current-time-display {
+  position: absolute;
+  right: 80px;
+  top: 0px;
+  color: #888484;
+}
+/* 剩余时间 */
+audio::-webkit-media-controls-time-remaining-display {
+  position: absolute;
+  right: 40px;
+  top: 0px;
+  color: #888484;
+}
+audio::-webkit-media-controls-pane {
+  display: none;
+}
+/* 音量按钮 */
+audio::-webkit-media-controls-mute-button {
+  display: none;
+}
+/* audio::-webkit-media-controls-toggle-closed-captions-button {
+  display: none;
+}
+audio::-webkit-media-controls-volume-slider-container {
+  display: none;
+} */
+/* 音量的控制条 */
+audio::-webkit-media-controls-volume-slider {
+  display: none;
+}
+/* 进度条 */
+/* audio::-webkit-media-controls-timeline {
+  z-index: 99;
+} */
+
+/* 底部右边按钮 */
+.box-bottom-SC {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+/* 喜欢按钮 */
+.box-bottom-SC-like {
+  display: none;
+}
