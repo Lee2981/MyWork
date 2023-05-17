@@ -1,0 +1,10 @@
+{
+  "name": "user",
+  "version": "1.0.0",
+  "description": "超级管理员",
+  "auto_id": 3,
+  "dataList": [
+    { "id": 1, "name": "admin", "password": "123456" },
+    { "id": 2, "name": "user", "password": "123456" }
+  ]
+}

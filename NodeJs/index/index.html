@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <button>添加</button>
+      <button>修改</button>
+      <button>删除</button> <br />
+      用户名:
+      <input type="text" placeholder="请输入用户名" name="name" /> <br />
+      密码:
+      <input type="text" placeholder="请输入用户名" name="password" /> <br />
+      <input type="submit" value="提交" />
+
+      <table>
+        <thead>
+          <tr>
+            <td>ID</td>
+            <td>用户名</td>
+            <td>密码</td>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <script>
+      $(document).ready(function () {
+        showList();
+      });
+      function showList() {
+        let html = "";
+        $.ajax({
+          url: "http://127.0.0.1:3000/users",
+          type: "GET",
+          success: function (res) {
+            console.log(res);
+          },
+        });
+      }
+    </script>
+  </body>
+</html>
