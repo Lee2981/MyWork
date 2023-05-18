@@ -1,3 +1,84 @@
+<!-- 2023-05-18 -->
+<!-- 26页 -->
+
+# BOM 属性对象方法
+
+## location 对象
+
+    1.location.href -- 返回或设置当前文档的URL
+    2.location.search --返回URL中的查询字符串部分
+    3.location.hash --返回URL#后面的东西,没有则返回空
+    4.location.host --返回URL中的主域名部分
+    5.location.hostname --返回URL的域名后的部分
+    6.location.port --返回端口号
+    7.location.protpcp --返回协议部分
+    8.location.assign --返回当前文档的URL
+    9.location.replace() --设置当前文档的URL
+    10.location.reload() --刷新页面
+
+## history 对象
+
+    1.history.go() --前进或后退指定页数
+    2.history.back() --后退一页
+    3.history.forward() --前进一页
+
+## Navigator 对象
+
+    1.navigator.userAgrnt --返回用户代理头的字符串表示
+    2.navigator.cookieEnabled --返回浏览器是否支持(启用)cookie
+
+# 400,401,403 状态码
+
+    1.400:请求无效(数据类型错误)
+    2.401:账户未进行验证
+    3.403:服务器已经取得请求,但拒绝执行
+
+# fetch 发送两次请求的原因
+
+    第一次发送询问服务器是否支持修改的请求头,如果支持发送第二次请求请求数据
+
+# Cookie,SessionStorage,LocalStorage 的区别
+
+    1.共同点:都是保存在浏览器端,并且是同源的
+    2.Cookie:
+        cookie数据始终在同源的http请求中携带,即cookie在浏览器和服务器之间来回传递
+        sessionStorage和localStorage不会自动把数据发给服务器,仅保存本地
+    3.sessionStorage:仅在浏览器窗口关闭前有效
+    4.localStorage:始终有效,窗口和浏览器关闭也保存
+    5.cookie:可以设置过期时间
+    6.cookie应用场景:保存用户登录状态等
+
+# cookie 如何防范 XSS 攻击
+
+    XSS(跨站脚本攻击)是指攻击者在返回的HTML中嵌入JS脚本,为了减轻这些攻击,需要在http头部配上set-cookie
+    httponly 可以防止XSS,它会禁止js脚本访问cookie
+    secure 告诉浏览器仅在请求为https的时候发送cookie
+
+# addEventListener 参数
+
+    addEventListener(event,funciton,useCapture)
+    event:事件名
+    function:事件触发时执行的函数
+    useCapture:事件是否在捕获或者冒泡阶段执行
+
+# 前端优化
+
+    1.降低请求量:合并资源,减少http请求数,minify/gzip 压缩,webP,lazyLoad
+    2.加快请求速度:预解析DNS,较少域名数,并行加载,CDN分发
+    3.缓存:HTTP协议缓存请求,离线缓存manifest,离线数据缓存localStorage
+    4.渲染:JS/CSS优化,加载顺序,服务器渲染,pipeline
+
+# get 和 post 区别
+
+    1.get参数通过url传递    post放在request body中
+    2.get请求在url中传递的参数有长度限制    post没有
+    3.get比post更不安全
+    4.get只能进行url编码    post支持多种编码
+    5.get请求参数会完整保存在浏览器记录里   post不会
+    6.get会产生一个TCP数据包    post会产生两个TCP包
+
+<!-- 2023-05-17 -->
+
 # HTTP 和 HTTPS
 
 ## 1.http 和 https 的基本概念
@@ -22,7 +103,7 @@
     3.客户端和web服务器会开始协商SSL加密等级
     4.客户端通过协商后的加密等级建立会话密钥,然后通过网站的公钥加密会话密钥,并传送给网站
     5.web服务器通过自己的私钥解密出会话密钥
-    5.web服务器通过会话密钥加密与客户端之间的通信
+    6.web服务器通过会话密钥加密与客户端之间的通信
 
 ## 4.https 协议的优点
 
