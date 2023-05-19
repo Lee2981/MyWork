@@ -1,0 +1,20 @@
+{
+  "name": "user",
+  "version": "1.0.0",
+  "description": "超级管理员",
+  "auto_id": 18,
+  "dataList": [
+    { "id": "2", "name": "user2", "password": "123456" },
+    { "id": 4, "name": "321", "password": "321" },
+    { "id": 5, "name": "小黑子", "password": "123456" },
+    { "id": 6, "name": "小黑子", "password": "123456" },
+    { "id": 7, "name": "小黑子", "password": "123456" },
+    { "id": 12, "name": "admin", "password": "123456" },
+    { "id": 13, "name": "123", "password": "123" },
+    { "id": 14, "name": "123", "password": "321" },
+    { "id": 15, "name": "企鹅", "password": "请问" },
+    { "id": 16, "name": "123", "password": "123" },
+    { "id": 17, "name": "Leeee", "password": "222" },
+    { "id": 18, "name": "312", "password": "123" }
+  ]
+}

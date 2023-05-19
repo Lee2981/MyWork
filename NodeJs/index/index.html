@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../../jQuery/jquery.js"></script>
+  </head>
+  <style>
+    table {
+      text-align: center;
+      width: 100%;
+      height: 100%;
+      border-collapse: collapse;
+    }
+  </style>
+  <body>
+    <div>
+      <button onclick="addUser()">添加</button>
+      <button onclick="updUser()">修改</button>
+      <button onclick="login()">登录</button> <br />
+      用户名:
+      <input type="text" placeholder="请输入用户名" name="name" /> <br />
+      密码:
+      <input type="text" placeholder="请输入用户名" name="password" /> <br />
+      <table border="1">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>用户名</th>
+            <th>密码</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <script>
+      $(document).ready(function () {
+        showList();
+      });
+      let updId;
+      let token = "";
+      //登录
+      function login() {
+        $.ajax({
+          url: "http://localhost:3000/login",
+          type: "post",
+          dataType: "json",
+          data: {
+            username: $('input[name="name"]').val(),
+            password: $('input[name="password"]').val(),
+          },
+          success: function (res) {
+            console.log(res);
+            token = res.token;
+          },
+        });
+      }
+      //渲染列表
+      function showList() {
+        let html = "";
+        $.ajax({
+          url: "http://127.0.0.1:3000/users",
+          type: "GET",
+          dataType: "json",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          success: function (res) {
+            $(res.data).each((index, item) => {
+              html += `<tr>
+                          <td>${item.id}</td>
+                          <td>${item.name}</td>
+                          <td>${item.password}</td>
+                          <td><button onclick=getUser(${item.id})>查看</button><button onclick=getUser(${item.id})>修改</button><button onclick="delUser(${item.id})">删除</button></td>
+                      </tr>`;
+              $("tbody").html(html);
+            });
+          },
+        });
+      }
+      //增加
+      function addUser() {
+        $.ajax({
+          url: "http://127.0.0.1:3000/users/add",
+          type: "POST",
+          dataType: "json",
+          data: {
+            name: $('input[name = "name"]').val(),
+            password: $('input[name = "password"]').val(),
+          },
+          success: function (res) {
+            showList();
+          },
+        });
+      }
+      //修改
+      function updUser() {
+        $.ajax({
+          url: "http://127.0.0.1:3000/users/upd",
+          type: "POST",
+          dataType: "json",
+          data: {
+            id: updId,
+            name: $('input[name = "name"]').val(),
+            password: $('input[name = "password"]').val(),
+          },
+          success: function (res) {
+            showList();
+          },
+        });
+      }
+      //删除
+      function delUser(id) {
+        $.ajax({
+          url: "http://127.0.0.1:3000/users/del",
+          type: "DELETE",
+          dataType: "json",
+          data: {
+            id: id,
+          },
+          success: function (res) {
+            showList();
+          },
+        });
+      }
+      //查询单个
+      function getUser(id) {
+        updId = id;
+        $.ajax({
+          url: "http://127.0.0.1:3000/users/get?id=" + id,
+          type: "GET",
+          dataType: "json",
+          success: function (res) {
+            $('input[name="id"]').val(res.data.id);
+            $('input[name="name"]').val(res.data.name);
+            $('input[name="password"]').val(res.data.password);
+          },
+        });
+      }
+    </script>
+  </body>
+</html>
