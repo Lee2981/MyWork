@@ -11,7 +11,7 @@
     4.location.host --返回URL中的主域名部分
     5.location.hostname --返回URL的域名后的部分
     6.location.port --返回端口号
-    7.location.protpcp --返回协议部分
+    7.location.protocol --返回协议部分
     8.location.assign --返回当前文档的URL
     9.location.replace() --设置当前文档的URL
     10.location.reload() --刷新页面
@@ -24,7 +24,7 @@
 
 ## Navigator 对象
 
-    1.navigator.userAgrnt --返回用户代理头的字符串表示
+    1.navigator.userAgent --返回用户代理头的字符串表示
     2.navigator.cookieEnabled --返回浏览器是否支持(启用)cookie
 
 # 400,401,403 状态码
