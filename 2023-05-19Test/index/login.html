@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/login.css" />
+    <script src="../../jQuery/jquery.js"></script>
+  </head>
+  <body>
+    <div id="box">
+      <div class="box-1">
+        <div>用户名:<input type="text" name="username" /></div>
+        <div>密 码: <input type="password" name="password" /></div>
+        <p onclick="regist()">注册用户</p>
+        <button onclick="login()">登录</button>
+      </div>
+    </div>
+    <script>
+      //登录
+      function login() {
+        let data = {
+          username: $('input[name="username"]').val(),
+          password: $('input[name="password"]').val(),
+        };
+        $.ajax({
+          url: "http://127.0.0.1:3000/login",
+          type: "POST",
+          data: data,
+          dataType: "json",
+          success: function (res) {
+            if (res.token) {
+              localStorage.setItem("token", res.token);
+              localStorage.setItem("userName", data.username);
+              alert("登录成功!");
+              window.location.href = "index.html";
+            } else {
+              alert(res.msg);
+            }
+          },
+        });
+      }
+      //跳转注册
+      function regist() {
+        window.location.href = "regist.html";
+      }
+    </script>
+  </body>
+</html>

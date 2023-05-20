@@ -3,34 +3,34 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/login');
 
-var app = express()
+
+var app = express();
+
+//设置跨域访问
+app.all("*", function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "X-Requested-With,Content-Type,Authorization,token"
+  );
+  res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
+  res.header("Content-Type", "application/json;charset=utf-8");
+  next();
+});
 
 // 设置 Mongoose 连接
 const mongoose = require('mongoose');
-const mongoDB = 'mongodb://127.0.0.1:27017/0001';
+const mongoDB = 'mongodb://127.0.0.1:27017/liuyanban';
 mongoose.set('strictQuery', false)
 mongoose.connect(mongoDB);
 mongoose.Promise = global.Promise;
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB 连接错误：'));
-
-require('dotenv').config();
-const secretKey = express().get('secretKey');
-app.set('secretKey', process.env.JWT_SECRET);
-//跨域
-//设置跨域访问
-app.all('*', function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*')
-  res.header('Access-Control-Allow-Headers', 'X-Requested-With,Content-Type,Authorization')
-  res.header('Access-Control-Allow-Methods', 'PUT,POST,GET,DELETE,OPTIONS')
-  res.header('Content-Type', 'application/json;charset=utf-8')
-  next()
-})
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -45,6 +45,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/login', loginRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/regist.css" />
+    <script src="../../jQuery/jquery.js"></script>
+  </head>
+  <body>
+    <div id="box">
+      <div class="box-1">
+        <div>用户名:<input type="text" name="username" /></div>
+        <div>密 码: <input type="password" name="password" /></div>
+        <div>
+          性别:
+          <select name="sex">
+            <option value="男">男</option>
+            <option value="女">女</option>
+            <option value="未知">未知</option>
+          </select>
+        </div>
+        <button onclick="regist()">注册</button>
+      </div>
+    </div>
+    <script>
+      function regist() {
+        let data = {
+          username: $('input[name="username"]').val(),
+          password: $('input[name="password"]').val(),
+          sex: $('select[name="sex"]').val(),
+        };
+        $.ajax({
+          url: "http://127.0.0.1:3000/users/add",
+          type: "POST",
+          data: data,
+          dataType: "json",
+          success: function (res) {
+            if (res._id) {
+              // localStorage.setItem("token", res.token);
+              alert("注册成功!");
+            } else {
+              alert(res.msg);
+            }
+          },
+        });
+      }
+    </script>
+  </body>
+</html>

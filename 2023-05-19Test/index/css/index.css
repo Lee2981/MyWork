@@ -1,0 +1,53 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+#box {
+  width: 100%;
+  height: 800px;
+  margin-top: 50px;
+}
+.box-ly {
+  text-align: center;
+}
+.lyBtn {
+  width: 900px;
+  height: 50px;
+  border: 0;
+  background-color: green;
+  border-radius: 8px;
+  color: white;
+  margin-bottom: 30px;
+  cursor: pointer;
+}
+.box-lyb {
+  border: 3px solid #ccc;
+  width: 920px;
+  height: 400px;
+  margin-left: 500px;
+  overflow: scroll;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.box-lyb ul {
+  list-style: none;
+}
+.box-lyb ul li {
+  border-radius: 8px;
+  border: 2px solid rgb(138, 138, 236);
+  padding-left: 10px;
+  margin-bottom: 20px;
+}
+.box-ly input {
+  width: 878px;
+}
+.box-lyb ul button {
+  width: 50px;
+  height: 30px;
+  border: 0;
+  background-color: red;
+  color: white;
+  border-radius: 5px;
+  margin-top: 20px;
+  cursor: pointer;
+}
