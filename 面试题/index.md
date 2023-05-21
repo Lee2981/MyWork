@@ -1,5 +1,72 @@
+<!-- 2023-05-21 -->
+
+# Http 支持的方法
+
+GET POST HEAD OPTIONS PUT DELETE TRACE CONTENT
+
+# 说一下浏览器缓存
+
+    缓存分为两种:强缓存,协商缓存,根据响应头决定
+    强缓存相关字段:expires cache-control 如果 cache-control 与 expires 同时存在的话,cache-control 的优先级高于 expires
+    协商缓存相关字段:Last-Modified/If-Modified-Since,Etag/Id-None-Match
+
+# 浏览器在生成页面的时候,会生成哪两棵树
+
+    DOM树和CSSOM树
+    当浏览器接收到服务器响应来的HTML文档后,会遍历文档节点,生成DOM树
+    CSSOM规则树由浏览器解析CSS文件生成
+
+# 输入 URL 到页面加载显示完成发生了什么
+
+    1.DNS解析
+    2.TCP连接
+    3.发送HTTP请求
+    4.服务器处理请求并返回HTTP报文
+    5.浏览器解析渲染页面
+    6.连接结束
+
+# link 和 import 的区别
+
+    link是html标签,import是css提供的
+    1.页面被加载时,link会同时被加载,import引用的css会等到页面加载结束后加载
+    2.link时html标签,没有兼容性 import只有IE5以上才可以识别
+    3.link方式样式的权重高于import
+
+# transition 和 animation 的区别
+
+    animation 和 transition 大部分属性相同的,他们都是随时间改变元素的属性值
+    transition 需要一个事件才能改变属性   animation 不需要触发事件也可以
+    transition 为2帧  animation可以一帧一帧的
+
+# Flex 布局
+
+    属性值:
+        1.display:flex
+        2.flex-direction: row | row-reverse | column | column-reverse;      决定主轴的方向
+        3.flex-wrap: nowrap | wrap | wrap-reverse   是否换行
+        4.justify-content：对其方式，水平主轴对齐方式
+        5.align-items：对齐方式，竖直轴线方向
+
+# 多行元素的文本省略号
+
+    display: -webkit-box
+    -webkit-box-orient:vertical
+    -webkit-line-clamp:3
+    overflow:hidden
+
+# opacity
+
+    opacity=0，该元素隐藏起来了，但不会改变页面布局
+
+# position 属性
+
+    1.固定定位 fixed
+    2.相对定位 relative
+    3.绝对定位 absolute
+    4.粘性定位 sticky
+    5.默认定位 Static
+
 <!-- 2023-05-18 -->
-<!-- 26页 -->
 
 # BOM 属性对象方法
 
