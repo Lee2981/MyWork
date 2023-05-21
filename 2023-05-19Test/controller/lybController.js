@@ -10,10 +10,10 @@ exports.lybList = (req, res, next) => {
         res.json(data)
     })
     // let token = req.headers.authorization
-    // // 验证JWT令牌并解析用户信息
+    // 验证JWT令牌并解析用户信息
     // try {
     // const user = jwt.verify(token, secretKey);
-    // let lyb = new lyb();
+    // let lyb = new Lyb();
     // lyb.find({}).then((res) => {
     //     console.log(res);
     //     alert(res)
@@ -23,13 +23,14 @@ exports.lybList = (req, res, next) => {
     //     console.error(`验证JWT令牌失败：${err.message}`);
     // }
 }
+
 //增加留言
 exports.addlyb = (req, res, next) => {
     const newLyb = new Lyb({
         title: req.body.title,
         content: req.body.content,
         create_time: getNowDate(),
-        author: "lisi",
+        author: req.body.author,
     })
     newLyb.save().then((lyb) => {
         res.json(lyb);
@@ -40,13 +41,13 @@ exports.addlyb = (req, res, next) => {
 
 //删除留言
 exports.dellyb = (req, res, next) => {
-    console.log(req.query.id);
-    Lyb.findByIdAndRemove(req.params.id).then((lyb) => {
+    Lyb.deleteOne({ _id: req.body.id }).then((lyb) => {
         res.json(lyb);
     }).catch((err) => {
         res.json(err);
     });
 }
+
 //获取当前时间
 function getNowDate() {
     var date = new Date();

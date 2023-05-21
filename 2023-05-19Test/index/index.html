@@ -17,6 +17,7 @@
           name="content"
           cols="100"
           rows="10"
+          placeholder="请输入留言内容..."
           style="resize: none; font-size: 18px"
         ></textarea>
         <br />
@@ -37,17 +38,16 @@
           type: "get",
           dataType: "json",
           success: function (res) {
-            console.log(res);
             let html = "";
             $(res).each((index, item) => {
               html += `<li>
                         <div>
                           <h4>标题:${item.title}</h4>
-                          <p>作者:${item.author}</p>
+                          <p class="author" authorIndex = ${index}>作者:${item.author}</p>
                           <p>时间:${item.create_time}</p>
                           <p>内容:${item.content}</p>
                         </div>
-                        <div><button onclick="del(${item._id})">删除</button></div>
+                        <div><button data-id=${item._id} class="delBtn">删除</button></div>
                        </li>`;
               $(".box-lyb ul").html(html);
             });
@@ -56,35 +56,63 @@
       }
       //新增留言
       function addLy() {
-        let data = {
-          title: $('input[name="title"]').val(),
-          content: $('textarea[name="content"]').val(),
-        };
-        $.ajax({
-          url: "http://127.0.0.1:3000/addlyb",
-          type: "POST",
-          data: data,
-          dataType: "json",
-          success: function (data) {
-            showList();
-          },
-        });
+        if (localStorage.getItem("userName") == null) {
+          alert("目前没有账户登录!");
+          window.location.href = "./login.html";
+        } else if ($('input[name="title"]').val() == "") {
+          alert("请正确填写内容!");
+        } else {
+          let data = {
+            title: $('input[name="title"]').val(),
+            content: $('textarea[name="content"]').val(),
+            author: localStorage.getItem("userName"),
+          };
+          $.ajax({
+            url: "http://127.0.0.1:3000/addlyb",
+            type: "POST",
+            data: data,
+            dataType: "json",
+            success: function (data) {
+              if (data) {
+                alert("留言成功!");
+                showList();
+                $('input[name="title"]').val("");
+                $('textarea[name="content"]').val("");
+              }
+            },
+          });
+        }
       }
       //删除留言
-      function del(id) {
-        $.ajax({
-          url: "http://127.0.0.1:3000/dellyb",
-          type: "delete",
-          dataType: "json",
-          data: {
-            id: id,
-          },
-          success: function (data) {
-            console.log(data);
-            showList();
-          },
-        });
-      }
+      $("ul").on("click", "button", function () {
+        let authorName = $(this)
+          .parent()
+          .parent()
+          .children()
+          .eq(0)
+          .children()
+          .eq(1)
+          .html();
+        if (authorName.substring(3) == localStorage.getItem("userName")) {
+          if (confirm("确定要删除吗?")) {
+            let id = $(this).attr("data-id");
+            console.log(id);
+            $.ajax({
+              url: "http://127.0.0.1:3000/dellyb",
+              type: "delete",
+              dataType: "json",
+              data: {
+                id: id,
+              },
+              success: function (res) {
+                showList();
+              },
+            });
+          }
+        } else {
+          alert("不能删除别人的留言");
+        }
+      });
     </script>
   </body>
 </html>

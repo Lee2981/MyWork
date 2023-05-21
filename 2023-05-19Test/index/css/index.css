@@ -20,6 +20,9 @@
   margin-bottom: 30px;
   cursor: pointer;
 }
+textarea {
+  border-radius: 10px;
+}
 .box-lyb {
   border: 3px solid #ccc;
   width: 920px;
@@ -40,6 +43,9 @@
 }
 .box-ly input {
   width: 878px;
+  height: 30px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
 }
 .box-lyb ul button {
   width: 50px;
@@ -50,4 +56,7 @@
   border-radius: 5px;
   margin-top: 20px;
   cursor: pointer;
+}
+li:nth-child(odd) {
+  background-color: #f8f1f1;
 }
