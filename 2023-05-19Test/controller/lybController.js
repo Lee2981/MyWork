@@ -10,15 +10,15 @@ exports.lybList = (req, res, next) => {
         res.json(data)
     })
     // let token = req.headers.authorization
-    // 验证JWT令牌并解析用户信息
+    // // 验证JWT令牌并解析用户信息
     // try {
-    // const user = jwt.verify(token, secretKey);
-    // let lyb = new Lyb();
-    // lyb.find({}).then((res) => {
-    //     console.log(res);
-    //     alert(res)
-    // })
-    // res.json(user)
+    //     const user = jwt.verify(token, secretKey);
+    //     let lyb = new Lyb();
+    //     lyb.find({}).then((res) => {
+    //         console.log(res);
+    //         alert(res)
+    //     })
+    //     res.json(user)
     // } catch (err) {
     //     console.error(`验证JWT令牌失败：${err.message}`);
     // }

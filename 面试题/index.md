@@ -1,3 +1,69 @@
+<!-- 2023-05-22 -->
+
+# get 和 post 请求在缓存方面的区别
+
+    get:请求类似于查找的过程,用户获取数据,可以不用每次都与数据库连接,所以可以使用缓存
+    post:post一般做的是修改和删除的工作,所以必须与数据库交互,所以不能使用缓存,因此get比较适合请求缓存
+
+# 说一下闭包
+
+    闭包就是能够读取其他函数内部变量的函数,或者子函数在外调用,子函数所在的父函数的作用域不会被释放
+
+# 说说前端中的事件流
+
+    什么是事件流:事件流描述的是从页面中接收的事件的顺序,
+        DOM2级事件流包括:
+            1.事件捕获阶段
+            2.处于目标阶段
+            3.事件冒泡阶段
+
+# 说一下图片的懒加载和预加载
+
+    预加载:提前加载图片,当用户需要查看时可直接从本地缓存中渲染
+    懒加载:懒加载的主要目的时作为服务器前端的优化,减少请求数或延迟请求数
+    两者的区别:两者的行为是相反的,一个是提前加载,一个是迟缓甚至不加载
+    懒加载对服务器有一定的缓解压力的作用,预加载会增加服务器前端压力
+
+# mouseOver 和 mouseEnter 的区别
+
+    mouseOver:当鼠标移入元素或其子元素都会触发事件,所以会有一个重复出发,冒泡的过程.
+    mouseout
+    mouseEnter:当鼠标移入元素本身(不包含元素的子元素)会触发事件,也就是不会冒泡
+    mouseLeave
+
+# new 操作符都做了什么事
+
+    new操作符新建立了一个新对象,这个对象原型指向构造函数的protopyte,执行构造函数后返回这个对象
+
+# 改变函数内部 this 指针的指向函数(bind,apply,call 的区别)
+
+    通过apply和call改变函数的this指向,
+    他们函数两个函数的
+        第一个参数都是改变指向的那个对象
+        第二个参数:apply是数组,
+                  call是arg1,arg2,arg3
+    通过bind改变this作用域会返回一个新的函数,这个函数不会马上执行
+
+# JS 的垃圾回收机制
+
+    JS的解释器可以检测到程序不再使用一个对象,当它确定这个对象是无用的时候,他就会把这个对象的占用内存释放
+    垃圾回收的方法:
+        1.标记清除
+        2.计数引用
+
+# 如何理解前端模块化
+
+    前端模块化就是复杂的文件变成一个一个独立的模块
+    分成的独立模块有利于重用(复用性)和维护(版本迭代),这样会引来模块之间相互依赖的问题
+
+# setTimeout,setInterval 和 requestAnimationFrame
+
+    1.setTimeout和setInterval都需要设置时间间隔
+      requestAnimationFrame不需要设置时间间隔
+    2.requestAnimationFrame会把每一帧的所有的DOM操作集中起来,在一次重绘或回流中就完成,并且重绘和回流的时间间隔紧紧跟随浏览器的刷新频率
+    3.在隐藏和不可见的元素中,requestAnimationFrame将不会进行重绘或回流,这意味着更少的CPU,GPU和内存使用量
+    4.requestAnimationFrame是浏览器专门为动画提供的API,在运行时浏览器会自动优化方法的调用,并且页面不是激活状态下,动画会自动暂停,有效节省了CPU开销
+
 <!-- 2023-05-21 -->
 
 # Http 支持的方法
@@ -14,7 +80,7 @@ GET POST HEAD OPTIONS PUT DELETE TRACE CONTENT
 
     DOM树和CSSOM树
     当浏览器接收到服务器响应来的HTML文档后,会遍历文档节点,生成DOM树
-    CSSOM规则树由浏览器解析CSS文件生成
+    CSSOM 规则树由浏览器解析CSS文件生成
 
 # 输入 URL 到页面加载显示完成发生了什么
 
@@ -29,7 +95,7 @@ GET POST HEAD OPTIONS PUT DELETE TRACE CONTENT
 
     link是html标签,import是css提供的
     1.页面被加载时,link会同时被加载,import引用的css会等到页面加载结束后加载
-    2.link时html标签,没有兼容性 import只有IE5以上才可以识别
+    2.link是html标签,没有兼容性 import只有IE5以上才可以识别
     3.link方式样式的权重高于import
 
 # transition 和 animation 的区别
@@ -42,10 +108,14 @@ GET POST HEAD OPTIONS PUT DELETE TRACE CONTENT
 
     属性值:
         1.display:flex
-        2.flex-direction: row | row-reverse | column | column-reverse;      决定主轴的方向
-        3.flex-wrap: nowrap | wrap | wrap-reverse   是否换行
-        4.justify-content：对其方式，水平主轴对齐方式
-        5.align-items：对齐方式，竖直轴线方向
+        // 决定主轴的方向
+        2.flex-direction: row | row-reverse | column | column-reverse;
+        // 是否换行
+        3.flex-wrap: nowrap | wrap | wrap-reverse
+        // 对其方式，水平主轴对齐方式
+        4.justify-content：center | left | right
+        // 对齐方式，竖直轴线方向
+        5.align-items：center
 
 # 多行元素的文本省略号
 
@@ -54,9 +124,10 @@ GET POST HEAD OPTIONS PUT DELETE TRACE CONTENT
     -webkit-line-clamp:3
     overflow:hidden
 
-# opacity
+# opacity 和 display:none 的区别
 
-    opacity=0，该元素隐藏起来了，但不会改变页面布局
+    opacity=0，元素隐藏，不会改变页面布局
+    display:none    元素隐藏,会改变布局
 
 # position 属性
 
