@@ -118,7 +118,7 @@ body {
   width: 100%;
   height: 100%;
 }
-
+/* 开始页面动画 */
 .startAnimation {
   -webkit-animation: startAnimation 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53)
     both;
