@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Swiper demo</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"
+    />
+    <!-- Link Swiper's CSS -->
+    <link
+      rel="stylesheet"
+      href="../swiper-8.4.7/swiper/swiper-bundle.min.css"
+    />
+    <link rel="stylesheet" href="../layui-v2.7.6/layui/css/layui.css" />
+    <!-- login.css -->
+    <link rel="stylesheet" href="./css/login.css" />
+    <script src="../jQuery/jquery.js"></script>
+  </head>
+
+  <body>
+    <!-- 开始动画 -->
+    <div id="startBox">
+      <img
+        src="https://img.zcool.cn/community/01fc9a5d1fff7ea801207640ef9f0d.gif "
+        alt=""
+      />
+    </div>
+    <!-- 登录 -->
+    <div id="box">
+      <h2>登录</h2>
+      <div class="layui-form-item">
+        <div class="layui-input-block">
+          <input
+            type="text"
+            name="title"
+            id="user"
+            required
+            lay-verify="required"
+            placeholder="账号"
+            autocomplete="off"
+            class="layui-input"
+          />
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <div class="layui-input-block">
+          <input
+            type="text"
+            name="title"
+            required
+            id="pwd"
+            lay-verify="required"
+            placeholder="密码"
+            autocomplete="off"
+            class="layui-input"
+          />
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <div class="layui-input-block">
+          <input
+            type="text"
+            name="title"
+            id="yzm"
+            style="margin-left: -107px"
+            required
+            lay-verify="required"
+            placeholder="验证码"
+            autocomplete="off"
+            class="layui-input"
+          />
+        </div>
+        <span id="yz"></span>
+      </div>
+      <div id="remenberDiv">
+        <input type="checkbox" id="rememberMe" style="margin-right: 5px" /><span
+          >记住我</span
+        >
+      </div>
+      <button type="button" id="loginBtn" class="layui-btn layui-btn-fluid">
+        登录
+      </button>
+    </div>
+    <!-- Swiper -->
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <img src="./img/login-background1.png" alt="" />
+        </div>
+        <div class="swiper-slide">
+          <img src="./img/login-background2.png" alt="" />
+        </div>
+        <div class="swiper-slide">
+          <img src="./img/login-background3.png" alt="" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Swiper JS -->
+    <script src="../swiper-8.4.7/swiper/swiper-bundle.min.js"></script>
+    <!-- Initialize Swiper -->
+    <script>
+      var swiper = new Swiper(".mySwiper", {
+        autoplay: true,
+      });
+      $(function () {
+        if (
+          localStorage.getItem("user") != null &&
+          localStorage.getItem("pwd") != null
+        ) {
+          window.location.href = "./index.html";
+        } else {
+          GifFun();
+          getCode();
+        }
+      });
+      //点击登录按钮
+      $("#loginBtn").click(function () {
+        if (
+          $("#yzm").val() == $("#yz").html() &&
+          $("#user").val() != "" &&
+          $("#pwd").val() != ""
+        ) {
+          if (rememberMe.checked == true) {
+            localStorage.setItem("user", $("#user").val());
+            localStorage.setItem("pwd", $("#pwd").val());
+          }
+          window.location.href = "./index.html";
+        } else {
+          alert("请填写正确的信息!");
+        }
+      });
+      //gif消失
+      function GifFun() {
+        setInterval(function () {
+          $("#startBox").addClass("startAnimation");
+        }, 2650);
+      }
+      //获取验证码
+      function getCode() {
+        let html = "";
+        for (let i = 0; i < 4; i++) {
+          codeNum = Math.floor(Math.random() * (9 - 1 + 1) + 1);
+          html += codeNum;
+        }
+        $("#yz").html(html);
+      }
+      //点击验证码刷新验证码
+      $("#yz").click(function () {
+        getCode();
+      });
+    </script>
+  </body>
+</html>

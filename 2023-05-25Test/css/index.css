@@ -1,0 +1,350 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+body,
+html {
+  width: 100%;
+  height: 100%;
+}
+ul {
+  list-style: none;
+}
+#box {
+  width: 100%;
+  height: 100%;
+  background-color: pink;
+  display: flex;
+}
+button {
+  cursor: pointer;
+}
+/* 导航栏 */
+.nav {
+  background-color: #3b4e66;
+  width: 15%;
+  height: 100%;
+  position: fixed;
+}
+/* 导航栏头部的logo */
+.nav h3 {
+  color: white;
+  width: 100%;
+  text-align: center;
+  padding-top: 20px;
+}
+/* 所有的li标签 */
+.nav ul li {
+  padding-top: 5px;
+  line-height: 60px;
+  padding-left: 20px;
+  color: white;
+  cursor: pointer;
+}
+/* li标签悬浮 */
+.nav ul li:hover {
+  background-color: #2d3b4d;
+  transition: background 0.3s;
+}
+/* 导航栏里的图标 */
+.nav ul li svg {
+  position: relative;
+  top: 3px;
+}
+/* 导航栏里的文字 */
+.nav ul li span {
+  margin-left: 10px;
+}
+/* 主体 */
+.body {
+  margin-left: 285px;
+  width: 85%;
+  height: 100%;
+  background-color: #eff1f4;
+}
+/* 顶部的个人信息 */
+.body-top {
+  width: 100%;
+  text-align: right;
+  height: 50px;
+  padding-top: 20px;
+  background-color: white;
+  box-shadow: 1px 1px 5px rgba(160, 158, 158, 0.3);
+}
+/* 下图标 */
+.body-top svg {
+  padding-right: 20px;
+  cursor: pointer;
+}
+/* 退出登录下拉菜单 */
+.body-exit {
+  background-color: white;
+  width: 100px;
+  position: fixed;
+  right: 20px;
+  top: 50px;
+  text-align: center;
+  box-shadow: 5px 2px 10px 0px rgba(126, 122, 122, 0.5);
+  border-radius: 2px;
+  opacity: 0;
+  cursor: pointer;
+}
+/* 主体中部的头部 */
+.body-middle-top {
+  margin-top: 10px;
+  width: 100%;
+  height: 200px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+/* 主体中部的头部 下的3个盒子 */
+.body-middle-top-middle {
+  width: 30%;
+  height: 100px;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+  cursor: pointer;
+}
+/* icon图标盒子 */
+.body-middle-top-middle-svg {
+  margin-left: 20px;
+  width: 80px;
+  height: 80px;
+  text-align: center;
+  border-radius: 8px;
+}
+/* 所有的icon公用样式 */
+.body-middle-top-middle-svg svg {
+  margin-top: 10px;
+}
+/* 第一个icon盒子 */
+.svg1 svg {
+  background-color: #40c9c6;
+  border-radius: 50%;
+  padding: 5px;
+}
+/* 第2,3个icon盒子 */
+.svg2 svg,
+.svg3 svg {
+  margin-top: 15px;
+}
+/* 所有p标签样式 */
+.body-middle-top-middle-p p {
+  margin-right: 20px;
+  margin-top: 5px;
+  font-size: 20px;
+  color: #666;
+}
+/* 标题p标签样式 */
+.body-middle-top-middle-p .p1 {
+  font-size: 14px;
+  color: #c7c1c1;
+}
+/* echarts */
+#main {
+  width: 96%;
+  height: 600px;
+  background-color: white;
+  margin-left: 30px;
+}
+/* 首页 */
+#home {
+  display: block;
+}
+/* 用户管理 */
+#user {
+  display: none;
+}
+/* 系统监控 */
+#monitoring {
+  display: none;
+  margin-left: 30px;
+}
+/* 用户管理头部搜索 */
+.body-middle-user-top {
+  margin: auto;
+  width: 95%;
+  height: 50px;
+  padding-top: 30px;
+}
+/* 检索的span */
+.body-middle-user-top span {
+  padding-left: 10px;
+  padding-right: 5px;
+}
+/* 检索的input,select框 */
+.body-middle-user-top input,
+select {
+  width: 200px;
+  height: 40px;
+  border: 1px solid #ccc;
+}
+/* 检索中的按钮 */
+.body-middle-user-top button {
+  margin-left: 10px;
+  width: 90px;
+  height: 40px;
+  border: 0;
+  border-radius: 5px;
+  color: white;
+}
+/* 搜索按钮 */
+.searchBtn {
+  background-color: #66b1ff;
+}
+/* 重置按钮 */
+.resetBtn {
+  background-color: #85ce61;
+}
+/* 添加按钮 */
+.addBtn {
+  background-color: #66b1ff;
+}
+/* 表格 */
+.body-middle-user-table {
+  margin: auto;
+  width: 90%;
+  height: 600px;
+  margin-top: 20px;
+}
+.body-middle-user-table th,
+td {
+  border: 1px solid #ccc;
+}
+.body-middle-user-table tr {
+  height: 50px;
+}
+.body-middle-user-table tr:nth-child(even) {
+  background-color: #e2dbdb;
+}
+.body-middle-user-table table {
+  text-align: center;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+}
+/* 修改 */
+.updBtn {
+  border: 0;
+  background-color: #66b1ff;
+  width: 60px;
+  height: 30px;
+  border-radius: 3px;
+  color: white;
+}
+/* 删除 */
+.delBtn {
+  border: 0;
+  background-color: #f78989;
+  width: 60px;
+  height: 30px;
+  margin-left: 20px;
+  border-radius: 3px;
+  color: white;
+}
+/* 表单 */
+.body-middle-user-add {
+  width: 500px;
+  height: 500px;
+  background-color: rgb(204, 204, 204, 0.5);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -250px;
+  margin-left: -250px;
+  border-radius: 10px;
+  display: none;
+}
+.layui-form {
+  margin-top: 50px;
+  margin-left: 50px;
+}
+/* 分页 */
+#pageLimit {
+  margin-left: 60px;
+}
+/* 系统监控头部信息详情 */
+.body-middle-monitoring {
+  width: 95%;
+  height: 200px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 30px;
+  box-shadow: 1px 1px 10px rgba(131, 129, 129, 0.5);
+  border-radius: 5px;
+  background-color: white;
+}
+.body-middle-monitoring div {
+  width: 49%;
+  line-height: 40px;
+  border-bottom: 1px solid #c4bcbc;
+  padding-left: 10px;
+}
+/* CPU */
+.body-middle-CPU {
+  width: 95%;
+  height: 500px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+/* 左边CPU\内存使用率 */
+.body-middle-CPU-left {
+  width: 30%;
+  height: 100%;
+  background-color: white;
+  box-shadow: 1px 1px 10px rgba(131, 129, 129, 0.5);
+  border-radius: 5px;
+}
+.body-middle-CPU h3 {
+  border-bottom: 1px solid #ccc;
+  line-height: 60px;
+  padding-left: 30px;
+}
+/* 右边CPU\内存使用趋势率 */
+.body-middle-CPU-right {
+  width: 70%;
+  height: 100%;
+  background-color: white;
+  margin-left: 20px;
+  box-shadow: 1px 1px 10px rgba(131, 129, 129, 0.5);
+  border-radius: 5px;
+}
+/* 磁盘总使用率-左 */
+.body-middle-disk-left {
+  width: 25%;
+  height: 100%;
+  background-color: white;
+  box-shadow: 1px 1px 10px rgba(131, 129, 129, 0.5);
+  border-radius: 5px;
+}
+/* 磁盘总使用率-右 */
+.body-middle-disk-right {
+  width: 75%;
+  height: 100%;
+  background-color: white;
+  margin-left: 20px;
+  box-shadow: 1px 1px 10px rgba(131, 129, 129, 0.5);
+  border-radius: 5px;
+}
+/* 磁盘总使用率-右-table*/
+.body-middle-disk-right table {
+  width: 100%;
+  line-height: 50px;
+  text-align: center;
+  border-collapse: 0;
+  margin-top: 20px;
+}
+.body-middle-disk-right table tr {
+  border-bottom: 1px solid #ccc;
+}
+.body-middle-disk-right table td {
+  border: 0;
+}

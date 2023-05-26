@@ -1,0 +1,154 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  position: relative;
+  height: 100%;
+}
+
+body {
+  background: #eee;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: #000;
+  margin: 0;
+  padding: 0;
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#box {
+  width: 400px;
+  height: 380px;
+  background-color: white;
+  z-index: 3;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-top: -190px;
+  margin-left: -200px;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
+}
+
+#box h2 {
+  height: 30px;
+  color: rgb(112, 112, 112);
+  margin-bottom: 50px;
+  margin-top: 20px;
+}
+
+.layui-input-block {
+  margin-left: 10px;
+}
+
+#yzm {
+  width: 240px;
+}
+
+#user {
+  width: 350px;
+}
+
+#pwd {
+  width: 350px;
+}
+
+#yz {
+  position: absolute;
+  left: 310px;
+  top: 220px;
+  cursor: pointer;
+}
+
+#remenberDiv {
+  margin-left: -266px;
+}
+
+#loginBtn {
+  width: 350px;
+  margin-top: 25px;
+}
+
+#startBox {
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  position: absolute;
+  z-index: 4;
+}
+
+#startBox img {
+  width: 100%;
+  height: 100%;
+}
+
+.startAnimation {
+  -webkit-animation: startAnimation 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53)
+    both;
+  animation: startAnimation 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+}
+
+@-webkit-keyframes startAnimation {
+  0% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  100% {
+    -webkit-transform: translateY(-1000px);
+    transform: translateY(-1000px);
+    opacity: 0;
+  }
+}
+
+@keyframes startAnimation {
+  0% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  100% {
+    -webkit-transform: translateY(-1000px);
+    transform: translateY(-1000px);
+    opacity: 0;
+  }
+}
